@@ -3,12 +3,8 @@ $(document).ready(function () {
   const lenis = new Lenis({
     duration: 2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
     wheelMultiplier: 0.8,
     touchMultiplier: 1.5,
-    smooth: true,
-    smoothTouch: false,
-    lerp: 0.1,
   });
 
   const raf = (time) => {
@@ -17,8 +13,7 @@ $(document).ready(function () {
   };
   requestAnimationFrame(raf);
 
-  gsap.registerPlugin(ScrollTrigger);
-  // cursor
+  // cursor + video move
   const $cursor = $(".cursor");
   const $videoArea = $(".video_wrapper video");
 
@@ -43,22 +38,26 @@ $(document).ready(function () {
     });
   });
 
-  $("a").hover(
-    () => {
-      gsap.to($cursor, {
+  const links = document.querySelectorAll("a");
+  const cursor = document.querySelector(".cursor");
+
+  links.forEach((link) => {
+    link.addEventListener("mouseenter", () => {
+      gsap.to(cursor, {
         duration: 0.5,
         scale: 5,
         ease: "power1",
       });
-    },
-    () => {
-      gsap.to($cursor, {
+    });
+
+    link.addEventListener("mouseleave", () => {
+      gsap.to(cursor, {
         duration: 0.5,
         scale: 1,
         ease: "power1",
       });
-    }
-  );
+    });
+  });
 
   // preload
   const $countOdd = $(".preload_wrapper .count:nth-child(odd)");
@@ -101,6 +100,8 @@ $(document).ready(function () {
     });
   }
 
+  gsap.registerPlugin(ScrollTrigger);
+
   gsap.fromTo(
     ".link_start",
     {
@@ -130,7 +131,6 @@ $(document).ready(function () {
       end: () => "+=" + ($(".work_wrapper")[0].scrollWidth - $(window).width()),
       pin: true,
       scrub: 1,
-      markers: true,
       toggleClass: {
         targets: "header",
         className: "is-hidden",
@@ -152,15 +152,15 @@ $(document).ready(function () {
     ease: "none",
   });
 
-  // background 색상 물려있음 + header hidden
   gsap.to(".contact", {
     scrollTrigger: {
       trigger: ".contact",
-      start: "top top",
-      end: "bottom bottom",
+      start: "center top",
+      end: "bottom top",
       scrub: 1,
-      markers: true,
+      // markers: true,
     },
+    opacity: 0,
     backgroundColor: "#000",
     ease: "power1.out",
   });
@@ -169,23 +169,26 @@ $(document).ready(function () {
     $(this).toggleClass("is-active");
   });
 
-  $(".form_item input").on({
-    focus: function () {
-      $(this).closest(".form_item").css("border", "1px solid #000");
-    },
-    blur: function () {
-      $(this)
-        .closest(".form_item")
-        .css("border", "1px solid rgb(222, 222, 222)");
-    },
+  // form input focus
+  document.querySelectorAll(".form_item input").forEach((input) => {
+    input.addEventListener("focus", function () {
+      this.closest(".form_item").style.border = "1px solid #000";
+    });
+
+    input.addEventListener("blur", function () {
+      this.closest(".form_item").style.border = "1px solid rgb(222, 222, 222)";
+    });
   });
 
-  $(".btn_submit").hover(
-    () => {
-      $(".point-color").css("color", "rgba(224,49,34)");
-    },
-    () => {
-      $(".point-color").css("color", "rgba(0,0,0)");
-    }
-  );
+  // submit btn hover
+  const btnSubmit = document.querySelector(".btn_submit");
+  const pointColor = document.querySelector(".point-color");
+
+  btnSubmit.addEventListener("mouseenter", () => {
+    pointColor.style.color = "rgba(224,49,34)";
+  });
+
+  btnSubmit.addEventListener("mouseleave", () => {
+    pointColor.style.color = "rgba(0,0,0)";
+  });
 });

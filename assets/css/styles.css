@@ -22,7 +22,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  transition: background-color 0.5s ease;
   z-index: 100;
   width: 30px;
   height: 30px;
@@ -83,12 +82,8 @@ header.is-hidden {
   height: 2px;
   background: #fff;
   transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s ease;
-}
-
-.gnb_item a::after {
   transform-origin: right;
+  transition: transform 0.5s ease;
 }
 
 .gnb_item a:hover::after {
@@ -348,8 +343,7 @@ header.is-hidden {
   display: flex;
   flex-direction: row;
   width: 500%;
-  overflow-x: auto;
-  will-change: scroll-position;
+  overflow-x: hidden;
 }
 
 .featured .work_item {
@@ -762,7 +756,6 @@ header.is-hidden {
 .footer .link_box .desc {
   margin-bottom: 30px;
   font-size: 3.9vw;
-  /* width: 50%; */
 }
 
 .footer .link_list {
@@ -871,6 +864,7 @@ header.is-hidden {
 }
 /* Temp */
 @media screen and (max-width: 768px) {
+  .cursor,
   .gnb,
   .deco {
     display: none;
@@ -895,4 +889,8 @@ header.is-hidden {
   .fragments_body {
     padding-top: 0;
   }
+  /* .featured .work_wrapper {
+    display: block;
+    width: 100%;
+  } */
 }

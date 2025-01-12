@@ -24,8 +24,12 @@
 
 body {
   font-family: "Montreal", sans-serif;
-  overflow: hidden;
   color: #fff;
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 ul {
@@ -58,6 +62,10 @@ input {
   background: transparent;
   border: none;
   outline: none;
+}
+
+footer {
+  background: #000;
 }
 
 /* layout */
