@@ -1,0 +1,121 @@
+@import "reset.css";
+
+/* :root {} */
+
+@font-face {
+  font-family: "DaVinci";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/davinci.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montreal";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/motreal.woff") format("woff");
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montreal", sans-serif;
+  overflow: hidden;
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+section {
+  position: relative;
+  width: 100%;
+}
+
+input {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+/* layout */
+.container {
+  overflow: hidden;
+}
+
+.deco {
+  position: absolute;
+  z-index: 1;
+}
+
+.list_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #eee;
+  font-size: 60px;
+}
+
+.index_num {
+  font-family: "DaVinci", serif;
+  font-size: 55px;
+}
+
+.caption {
+  position: relative;
+  padding-left: 12px;
+  font-size: 16px;
+}
+
+.caption::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 6px;
+  height: 6px;
+  background: #ffffff4d;
+  border-radius: 50%;
+}
+
+/* etc */
+.accent {
+  font-family: "DaVinci", serif;
+}
+
+.mr-20 {
+  margin-right: 20px;
+}
+
+.flx-justify {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dp-block {
+  display: block;
+}
